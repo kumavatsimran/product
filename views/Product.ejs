@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" /> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Document</title>
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0fbff;
+            /* Light blue background */
+        }
+
+        header {
+            background-color: #1e90ff;
+            /* Dodger blue */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            /* White background for the form */
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+        }
+
+        h2 {
+            color: #1e90ff;
+            /* Dodger blue */
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #4682b4;
+            /* Steel blue */
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #1e90ff;
+            /* Dodger blue */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #104e8b;
+            /* Darker blue */
+        }
+
+        footer {
+            background-color: #1e90ff;
+            /* Dodger blue */
+            color: white;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .btn {
+            background-color: #1e90ff;
+            padding: 5px;
+            border-radius: 5px;
+            align-items: center;
+            color: #ccc;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: black;
+        }
+
+        select {
+            padding: 5px;
+        }
+
+        img {
+            width: 250px;
+            height: 300px;
+            margin-right: 15px;
+        }
+        #parent{
+            padding: 5px;
+        }
+        button{
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--  -->
+    <main>
+        <div class="form-container p-3">
+            <h2>Add New Product</h2>
+            <form action="/product/addProduct" id="productForm" method="post" >
+                <label for="product-name">Product Name:</label>
+                <input type="text" name="title" placeholder="title" id="title">
+
+                <label for="description">Description:</label>
+                <input type="text" name="description" placeholder="description" id="description">
+
+                <label for="price">Price:</label>
+                <input type="number" name="price" placeholder="price" id="price">
+
+                <label for="image">Product Image:</label>
+                <input type="text" name="image" placeholder="image" id="image">
+
+                <input type="submit" value="submit" id="type" class="btn">
+                <!-- <input type="submit" value="updata" id="type" class="btn"> -->
+                <div>
+                    <button class="btn bg-info  rounded-4">
+                        <a href="/" class="text-white">Home page</a> 
+                    </button>
+                   
+                </div>
+            </form>
+            <div>
+                <tr>
+                    <td>
+                        <select name="categriId">
+
+                            <option value="" disabled selected>--select categri--</option>
+                            <%cat.map((val)=>{%>
+                                <option value="<%=val._id%>">
+                                    <%=val.name%>
+                                </option>
+                                <% })%>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="subcategryId">
+                            <option value="" disabled selected>--select subcategri--</option>
+                            <%subCat.map((val)=>{%>
+                                <option value="<%=val._id%>">
+                                    <%=val.name%>
+                                </option>
+                                <% })%>
+                        </select>
+                      </td>
+                  </tr>
+                <tr>
+                    <td>
+                        <select name="extraCatId">
+                            <option value="" disabled selected>--select extraCategry--</option>
+                            <%extra.map((val)=>{%>
+                                <option value="<%=val._id%>">
+                                    <%=val.name%>
+                                </option>
+                                <% })%>
+                        </select>
+                    </td>
+                </tr>
+
+            </div>
+        </div>
+    </main>
+    <div class="container">
+        <div class="text-center m-2 ">
+            <h1 class=" text-aling-center">your callection</h1>
+
+            <div class="row ">
+                    <div id="parent" class=" row  m-3  border border-info ">
+                        <div class="col-lg-3 col-md-6 border border-info m-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class=" ">
+            <p>&copy; 2024 ShopAAD. All rights reserved.</p>
+        </footer>
+      
+      
+</body>
+ 
+<!-- <script>
+    let add = (product) => {
+        fetch('/product/addProduct', {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(product)
+        }).then(() => get())
+    }
+
+    document.getElementById("productForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        let product = {
+            title: document.querySelector("#title").value,
+            description: document.querySelector("#description").value,
+            price: document.querySelector("#price").value,
+            image: document.querySelector("#image").value,
+        }
+        let type = document.querySelector('#type').value;
+        if (type == "submit") {
+            add(product);
+        } else {
+            updata(product);
+        }
+    });
+
+    let uimaker = (data) => {
+        document.querySelector('#parent').innerHTML = '';
+        data.map((ele) => {
+            let div = document.createElement('div');
+            let img = document.createElement('img');
+            img.src = ele.image;
+            let title = document.createElement('h1');
+            title.innerHTML = ele.title;
+            let description = document.createElement('p');
+            description.innerHTML = ele.description;
+            let price = document.createElement('p');
+            price.innerHTML = ele.price;
+            let btn1 = document.createElement('button');
+            btn1.innerHTML = "Delete";
+            btn1.addEventListener("click", () => deleteData(ele._id))
+            let btn2 = document.createElement('button');
+            btn2.innerHTML = "Edit";
+            btn2.addEventListener("click", () => editData(ele));
+            div.append(img, title, description, price, btn1, btn2);
+            document.querySelector('#parent').append(div);
+        })
+    }
+
+    let deleteData = (id) => {
+        fetch(`/product/delete/${id}`, {
+            method: 'DELETE'
+        }).then(() => get())
+    }
+    let editData = (data) => {
+        console.log("hi")
+        document.querySelector("#title").value = data.title
+        document.querySelector("#description").value = data.description
+        document.querySelector("#price").value = data.price
+        document.querySelector("#image").value = data.image
+        document.querySelector("#type").value = 'updata';
+        id = data._id
+    }
+
+    const get = async () => {
+        let req = await fetch('/product/data');
+        let res = await req.json();
+        uimaker(res.data);
+    }
+
+    get();
+</script> -->
+<!--  -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</html>

@@ -1,0 +1,67 @@
+
+<!--  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #4682b4;
+        }
+       .container {
+    background-color: #ffffff; /* White background for the form */
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgb(0, 195, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+h2 {
+    color: #1e90ff; /* Dodger blue */
+    text-align: center;
+    text-align: center;
+}
+
+li {
+    display: block;
+    margin-top: 10px;
+    color: #4682b4; /* Steel blue */
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.678);
+    padding: 8px;
+    border-radius: 15px;
+}
+button{
+    padding: 5px;
+    background-color: #4682b4;
+    color: aliceblue;
+    border-radius: 5px;
+    margin-left: 50px;
+}
+button:hover{
+    background-color: black;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/profile">
+            <h2 class="text-alig">profile</h2>
+            <ul>
+                <li ><%=user.username%></li>
+                <li ><%=user.email%></li>
+                <li ><%=user.phone%></li>
+            </ul>
+            <button><a href="/">Home page</a></button>
+         </form>
+    </div>
+
+   
+    
+</body>
+</html>
